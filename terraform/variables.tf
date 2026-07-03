@@ -1,42 +1,53 @@
-# Project Details
+
+# Project Variables
+
 
 variable "project_name" {
-  description = "Project name"
+  description = "Project Name"
   type        = string
   default     = "ezit"
 }
 
 variable "environment" {
-  description = "Deployment environment"
+  description = "Environment"
   type        = string
-  default     = "Dev"
+  default     = "dev"
 }
 
 variable "owner" {
-  description = "Resource owner"
+  description = "Owner of the resources"
   type        = string
   default     = "DevOps"
 }
 
+
 # AWS
+
+
 variable "aws_region" {
   description = "AWS Region"
   type        = string
   default     = "ap-south-1"
 }
 
-# Networking
+
+# VPC
 
 
 variable "vpc_cidr" {
-  description = "VPC CIDR Block"
+  description = "VPC CIDR"
   type        = string
   default     = "10.0.0.0/16"
 }
 
+
+# Availability Zones
+
+
 variable "availability_zones" {
   description = "Availability Zones"
-  type        = list(string)
+
+  type = list(string)
 
   default = [
     "ap-south-1a",
@@ -44,8 +55,13 @@ variable "availability_zones" {
   ]
 }
 
+
+# Public Subnets
+
+
 variable "public_subnet_cidrs" {
-  description = "Public subnet CIDRs"
+
+  description = "Public Subnet CIDRs"
 
   type = list(string)
 
@@ -55,8 +71,13 @@ variable "public_subnet_cidrs" {
   ]
 }
 
-variable "private_subnet_cidrs" {
-  description = "Private subnet CIDRs"
+
+# Private Application Subnets
+
+
+variable "private_app_subnet_cidrs" {
+
+  description = "Private Application Subnet CIDRs"
 
   type = list(string)
 
@@ -66,11 +87,28 @@ variable "private_subnet_cidrs" {
   ]
 }
 
+
+# Private Database Subnets
+
+
+variable "private_db_subnet_cidrs" {
+
+  description = "Private Database Subnet CIDRs"
+
+  type = list(string)
+
+  default = [
+    "10.0.21.0/24",
+    "10.0.22.0/24"
+  ]
+}
+
+
 # ALB
 
 
 variable "alb_name" {
   description = "Application Load Balancer Name"
   type        = string
-  default     = "ezit-alb"
+  default     = "ezit-dev-alb"
 }
